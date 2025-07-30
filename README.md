@@ -140,7 +140,7 @@ Docker & Docker Compose
 
 ### Accueil
 
-![Accueil](images/home.png)
+![Accueil](images/Home.png)
 
 ### Import de ventes
 
@@ -153,12 +153,6 @@ Docker & Docker Compose
 ### Gestion des produits
 
 ![Produits](images/products-view.png)
-
-### Recommandation intelligente
-
-![Prévision + recommandation](images/predict.png)
-
-
 
 ### Résultats des tests unitaires (Pytest)
 
