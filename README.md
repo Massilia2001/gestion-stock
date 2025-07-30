@@ -140,23 +140,23 @@ Docker & Docker Compose
 
 ### Accueil
 
-![Accueil](Docker/images/home.png)
+![Accueil](images/home.png)
 
 ### Import de ventes
 
-![Upload CSV](Docker/images/upload.png)
+![Upload CSV](images/upload.png)
 
 ### Visualisation
 
-![Graphique](Docker/images/visualisation.png)
+![Graphique](images/visualisation.png)
 
 ### Gestion des produits
 
-![Produits](Docker/images/products-view.png)
+![Produits](images/products-view.png)
 
 ### Recommandation intelligente
 
-![Prévision + recommandation](Docker/images/predict.png)
+![Prévision + recommandation](images/predict.png)
 
 
 
