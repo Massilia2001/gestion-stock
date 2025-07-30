@@ -164,7 +164,7 @@ Docker & Docker Compose
 
 > Tous les tests passent avec succès 
 
-![Résultat des tests](Docker/images/test-results.png)
+![Résultat des tests](images/test.png)
 
 ---
 
@@ -172,7 +172,7 @@ Docker & Docker Compose
 
 > Visualisation des prévisions sur 7 ou 30 jours, avec graphique interactif.
 
-![Page de prédiction](Docker/images/predict-view.png)
+![Page de prédiction](images/predict-view.png)
 
 ---
 
@@ -180,7 +180,7 @@ Docker & Docker Compose
 
 > Documentation interactive générée automatiquement avec Swagger UI.
 
-![Interface FastAPI](Docker/images/fastapi-docs.png)
+![Interface FastAPI](images/Fastapi.png)
 
 le depot github (https://github.com/Massilia2001/gestion-stock.git)
 
