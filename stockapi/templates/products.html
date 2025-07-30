@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Gestion des produits{% endblock %}
+{% block content %}
+<div class="product-card" style="max-width:600px; margin:0 auto; background:#f6faff; border-radius:20px; box-shadow:0 4px 18px #2d6cdf14; padding:2.5em 2em 1em 2em;">
+  <h2 style="color:#2d6cdf; margin-top:0;">Ajouter un produit</h2>
+  <form method="post" action="/products-view" style="display:grid; gap:1.2em;">
+    <label style="display:grid;">
+      <span>Nom</span>
+      <input type="text" name="name" required style="padding:.6em .9em; border-radius:10px; border:1px solid #d7e3fa;">
+    </label>
+    <label style="display:grid;">
+      <span>Stock actuel</span>
+      <input type="number" name="current_stock" value="0" style="padding:.6em .9em; border-radius:10px; border:1px solid #d7e3fa;">
+    </label>
+    <label style="display:grid;">
+      <span>Capacité</span>
+      <input type="number" name="capacity" value="0" style="padding:.6em .9em; border-radius:10px; border:1px solid #d7e3fa;">
+    </label>
+    <label style="display:grid;">
+      <span>Délai de livraison (jours)</span>
+      <input type="number" name="lead_time" value="0" style="padding:.6em .9em; border-radius:10px; border:1px solid #d7e3fa;">
+    </label>
+    <button type="submit" style="margin-top:1em; background:#2d6cdf; color:#fff; border:none; border-radius:12px; padding:.7em 1.5em; font-size:1.1em; font-weight:bold; box-shadow:0 2px 8px #2d6cdf28; cursor:pointer;">
+      Créer
+    </button>
+  </form>
+</div>
+
+<h3 style="margin:2em 0 1em 0; color:#2d6cdf;">Produits existants</h3>
+<ul style="list-style:none; padding:0;">
+  {% for p in products %}
+    <li style="background:#fff; margin-bottom:.9em; padding:1em 1.2em; border-radius:12px; box-shadow:0 2px 8px #2d6cdf12; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+      <span>
+        <b>{{ p.name }}</b>
+        <span style="color:#788;">Stock: <b>{{ p.current_stock }}</b></span>,
+        <span style="color:#788;">Capacité: <b>{{ p.capacity }}</b></span>,
+        <span style="color:#788;">Délai: <b>{{ p.lead_time }}</b>j</span>
+      </span>
+      <span>
+        <a href="/recommendation-view?product_id={{ p.id }}" style="color:#2d6cdf; font-weight:500; text-decoration:none; margin-right:1em;">🔍 Recommandation</a>
+        <a href="/predict-view?product_id={{ p.id }}" style="color:#197d32; font-weight:500; text-decoration:none;">📈 Prévision</a>
+      </span>
+    </li>
+  {% else %}
+    <li style="color:#d73737; padding:1em;">Aucun produit enregistré.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
+

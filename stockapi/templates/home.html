@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil - Gestion de stock & prévision</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body { font-family: Arial, sans-serif; background: #f5f5f5; }
+        .container { max-width: 600px; margin: 40px auto; background: #fff; padding: 32px; border-radius: 16px; box-shadow: 0 4px 16px #0001; }
+        h1 { margin-bottom: 20px; text-align: center; color: #222; }
+        ul { list-style: none; padding: 0; }
+        li { margin: 18px 0; }
+        a { text-decoration: none; color: #2369b8; font-size: 1.2em; }
+        a:hover { text-decoration: underline; color: #193b6c; }
+        .desc { font-size: 1.05em; margin-bottom: 30px; color: #555; text-align: center;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gestion de stock & prévision</h1>
+        <div class="desc">
+            Bienvenue sur l’application de gestion et de prévision des stocks.<br>
+            <b>Que souhaitez-vous faire ?</b>
+        </div>
+        <ul>
+            <li><a href="/visualisation">📊 Visualiser les ventes</a></li>
+            <li><a href="/predict-view">📈 Prédiction globale (tous produits)</a></li>
+            <li><a href="/products-view">🗂 Gérer les produits</a></li>
+            <li><a href="/recommendation-view?product_id=1">🤖 Prédiction & recommandation par produit</a> <br><small>(changer l’ID dans l’URL pour tester un autre produit)</small></li>
+            <li><a href="/upload">⬆️ Importer des ventes (CSV)</a></li>
+        </ul>
+    </div>
+</body>
+</html>

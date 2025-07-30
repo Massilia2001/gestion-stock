@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des produits</title>
+</head>
+<body>
+    <h1>Liste des produits</h1>
+    <ul>
+        {% for product in products %}
+            <li>{{ product.name }} (Stock actuel : {{ product.current_stock }}, Capacité : {{ product.capacity }}, Lead Time : {{ product.lead_time }})</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Ajouter un produit</h2>
+
+    <!-- Affichage du message d'erreur si besoin -->
+    {% if error %}
+        <div style="color: red; margin-bottom: 1em;">{{ error }}</div>
+    {% endif %}
+
+    <form method="post" action="/products-view">
+        <input type="text" name="name" placeholder="Nom" required>
+        <input type="number" name="current_stock" placeholder="Stock actuel" value="0" required>
+        <input type="number" name="capacity" placeholder="Capacité" value="0" required>
+        <input type="number" name="lead_time" placeholder="Lead time" value="0" required>
+        <button type="submit">Ajouter</button>
+    </form>
+</body>
+</html>

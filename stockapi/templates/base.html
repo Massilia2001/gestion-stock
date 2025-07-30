@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Gestion de stock{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f4f6fb;
+        }
+        nav {
+            background: #2d6cdf;
+            padding: 0.8rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            box-shadow: 0 2px 12px #0002;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.15rem;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            text-decoration: underline;
+            color: #ffd900;
+        }
+        .container {
+            max-width: 950px;
+            margin: 2.5rem auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 22px #0001;
+            padding: 2.4rem 2.2rem 2.4rem 2.2rem;
+        }
+        h1 {
+            color: #2d6cdf;
+            margin-top: 0.5em;
+            margin-bottom: 1em;
+            font-size: 2.1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .btn {
+            background: #2d6cdf;
+            color: #fff;
+            border: none;
+            padding: 0.7em 1.4em;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 1px 4px #2d6cdf33;
+            transition: background 0.18s;
+        }
+        .btn:hover {
+            background: #1b4fa0;
+        }
+        .alert {
+            background: #ffe6e6;
+            color: #900;
+            padding: 1em;
+            margin-bottom: 1.4em;
+            border-radius: 8px;
+            border: 1px solid #ffb6b6;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.4em;
+        }
+        th, td {
+            border-bottom: 1px solid #e4e7ef;
+            padding: 0.7em 0.5em;
+            text-align: left;
+        }
+        th {
+            background: #f1f5fb;
+            color: #23488a;
+            font-weight: 600;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/">Accueil</a>
+        <a href="/visualisation">Visualisation</a>
+        <a href="/predict-view">Prévision</a>
+        <a href="/upload">Importer ventes</a>
+        <a href="/products-view">Produits</a>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

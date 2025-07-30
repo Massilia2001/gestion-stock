@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Recommandation d'achat</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { 
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0; padding: 0;
+            background: linear-gradient(120deg, #e3ebf6 0%, #f3f9ff 100%);
+            min-height: 100vh;
+        }
+        .card {
+            margin: 60px auto;
+            padding: 2.5rem 2.2rem 1.7rem 2.2rem;
+            border-radius: 22px;
+            box-shadow: 0 8px 32px #2d6cdf22;
+            background: #fff;
+            max-width: 420px;
+            transition: box-shadow .2s;
+        }
+        .card:hover {
+            box-shadow: 0 16px 48px #2d6cdf33;
+        }
+        h2 {
+            color: #2d6cdf;
+            margin-top: 0;
+            margin-bottom: 1.4rem;
+            font-size: 1.4em;
+            letter-spacing: .03em;
+        }
+        .preview {
+            max-width: 100%;
+            display: block;
+            margin: 0.7em auto 1.6em auto;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px #2d6cdf15;
+        }
+        p, h3 {
+            margin: 0.7em 0;
+        }
+        h3 {
+            font-size: 1.1em;
+            color: #197d32;
+        }
+        .stat {
+            background: #f3f9ff;
+            padding: 0.8em 1em;
+            border-radius: 8px;
+            margin-bottom: .5em;
+            font-size: 1em;
+        }
+        .main-qty {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #197d32;
+            background: #d5f3de;
+            display: inline-block;
+            padding: .25em 1.1em;
+            border-radius: 22px;
+            margin-top: .2em;
+        }
+        .btn {
+            display: inline-block;
+            margin: 1.3em 0 0 0;
+            padding: .6em 1.8em;
+            background: #2d6cdf;
+            color: #fff;
+            font-weight: 600;
+            border: none;
+            border-radius: 24px;
+            box-shadow: 0 2px 10px #2d6cdf22;
+            text-decoration: none;
+            font-size: 1em;
+            transition: background .16s;
+        }
+        .btn:hover {
+            background: #197d32;
+            color: #fff;
+        }
+        .no-data {
+            color: #d73737;
+            margin-top: 2em;
+            text-align: center;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Produit : {{ product.name }}</h2>
+        {% if result %}
+            {% if plot_path %}
+                <img src="{{ plot_path }}" alt="Prévision sur 7 jours" class="preview">
+            {% endif %}
+            <div class="stat"><b>Prévision 7 jours :</b> {{ result.demand_forecast_next_7_days }}</div>
+            <div class="stat"><b>Stock actuel :</b> {{ result.current_stock }}</div>
+            <div class="stat"><b>Capacité :</b> {{ result.capacity }}</div>
+            <div class="stat"><b>Délai (jours) :</b> {{ result.lead_time }}</div>
+            <hr style="margin: 2em 0 1.5em 0;">
+            <div>Quantité à commander :</div>
+            <div class="main-qty">{{ result.recommended_order_qty }}</div>
+        {% else %}
+            <div class="no-data">
+                Pas de données de vente pour ce produit !
+            </div>
+        {% endif %}
+        <br>
+        <a class="btn" href="/products-view">Retour aux produits</a>
+    </div>
+</body>
+</html>
+

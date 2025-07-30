@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Upload des ventes{% endblock %}
+
+{% block content %}
+    <h1>Importer un fichier de ventes (.csv)</h1>
+    <form action="/upload-csv" method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; align-items: center; gap: 1.5em; max-width: 400px; margin: 2em auto;">
+        <input type="file" name="file" accept=".csv" required style="padding: 0.6em; border-radius: 6px; border: 1px solid #e0e0e0; background: #f7f8fa; width: 100%;">
+        <input type="submit" value="Télécharger" class="btn">
+    </form>
+    <p style="text-align:center; color: #666; margin-top:1.7em;">
+        <small>Le fichier doit contenir les colonnes <b>ds</b>, <b>y</b>, <b>product_id</b>.</small>
+    </p>
+{% endblock %}
+

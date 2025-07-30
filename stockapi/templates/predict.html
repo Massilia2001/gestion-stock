@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Prévision des ventes{% endblock %}
+
+{% block content %}
+    <h1>Prévision des ventes sur {{ periods | default(30) }} jours</h1>
+    <form method="get" action="/predict-view">
+        <label for="periods">Nombre de jours à prévoir :</label>
+        <input type="number" id="periods" name="periods" min="1" max="365" value="{{ periods | default(30) }}" />
+        <button type="submit">Lancer la prévision</button>
+    </form>
+
+    <!-- Graphique -->
+    <div class="chart-container">
+        <canvas id="forecastChart"></canvas>
+    </div>
+
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Prévision</th>
+            <th>Borne inférieure</th>
+            <th>Borne supérieure</th>
+        </tr>
+        {% for item in forecast %}
+        <tr>
+            <td>{{ item.ds }}</td>
+            <td>{{ item.yhat | round(2) }}</td>
+            <td>{{ item.yhat_lower | round(2) }}</td>
+            <td>{{ item.yhat_upper | round(2) }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Passe la variable forecast du backend vers le JS
+        const forecast = {{ forecast | tojson }};
+        const labels = forecast.map(item => item.ds.substring(0, 10));
+        const yhat = forecast.map(item => item.yhat);
+        const yhat_lower = forecast.map(item => item.yhat_lower);
+        const yhat_upper = forecast.map(item => item.yhat_upper);
+
+        const ctx = document.getElementById('forecastChart').getContext('2d');
+        const forecastChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Prévision',
+                        data: yhat,
+                        borderColor: 'green',
+                        backgroundColor: 'rgba(76, 175, 80, 0.2)',
+                        fill: false,
+                        tension: 0.2
+                    },
+                    {
+                        label: 'Borne inférieure',
+                        data: yhat_lower,
+                        borderColor: 'orange',
+                        borderDash: [5, 5],
+                        fill: false,
+                        tension: 0.2
+                    },
+                    {
+                        label: 'Borne supérieure',
+                        data: yhat_upper,
+                        borderColor: 'red',
+                        borderDash: [5, 5],
+                        fill: false,
+                        tension: 0.2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: { display: true, title: { display: true, text: 'Date' }},
+                    y: { display: true, title: { display: true, text: 'Ventes' }}
+                }
+            }
+        });
+    </script>
+{% endblock %}
